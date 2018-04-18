@@ -1,3 +1,57 @@
 <resources>
     <string name="app_name">BookStore</string>
+    <!-- string for the empty view display -->
+    <string name="empty_view_title_text">There are no books in your store</string>
+    <string name="empty_view_sub_text">go ahead and add a few! :)</string>
+
+    <!-- illegal argument expception thrown by the BookProvider -->
+    <string name="cannnot_query_uri">Cannot Query unknow Uris</string>
+    <!-- illegal argument exception thrown for insertion error -->
+    <string name="insertion_not_supported">Insertion not supported for</string>
+
+    <!-- illegal argument for sanity check insertion of any book -->
+    <string name="book_needs_name">Book requires a name</string>
+    <string name="book_needs_price">Book require a price</string>
+    <string name="book_needs_quantity">Book should have a minumum quantity</string>
+    <string name="book_needs_supplier">Book should have a supplier name</string>
+
+    <!-- error for failing to inset data -->
+    <string name="failed_to_insert_data">Failed to insert data for</string>
+    <!-- error updating data -->
+    <string name="failed_to_update_data">Failed to update data for</string>
+
+    <!-- create titles for adding and editing a book -->
+    <string name="add_new_book">Add Book</string>
+    <string name="edit_current_book">Edit Book</string>
+
+    <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_overview">Overview</string>
+    <string name="supplier_overview">Supplier Info</string>
+
+    <!-- Toast message for detriming wether a book was saved -->
+    <string name="error_inserting_new_book">Error inserting new book</string>
+    <string name="new_book_added">New book added Successfully</string>
+    <string name="error_updating_current_book">Error updating current book</string>
+    <string name="current_book_updated">Current book updated successfully</string>
+    <string name="error_deleting_book">Error deleting current book</string>
+    <string name="current_book_deleted">Current book successfully deleted</string>
+
+    <!-- labels of editor text view -->
+    <string name="book_name_here">Name</string>
+    <string name="book_price_here">Price</string>
+    <string name="book_quantity_here">Quantity</string>
+    <string name="supplier_number_here">Phone Number</string>
+
+    <!-- alert dialog string and warning messages -->
+    <string name="unsaved_changes_message">You have unsaved changes do you want to discard?</string>
+    <string name="discard_button">Discard</string>
+    <string name="keep_editing">Continue Editing</string>
+    <string name="delete_book_warning">Are you sure you want to delete this record?</string>
+    <string name="delete_button">Yes</string>
+    <string name="cancel_button">No</string>
+
+    <!-- click buttons strings -->
+    <string name="save_button">Save</string>
+
 </resources>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/table_row_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/column_book_name"
+                android:text="Name"
+                />
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/column_book_price"
+                android:text="Price"/>
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/column_book_quantity"
+                android:text="Quantity"/>
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/column_book_supName"
+                android:text="Supplier Name"/>
+            <TextView
+                style="@style/TextViewStyle"
+                android:id="@+id/column_book_supNum"
+                android:text="Supplier Number"/>
+        </LinearLayout>
+
+</TableLayout>
