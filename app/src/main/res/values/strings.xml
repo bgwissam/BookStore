@@ -52,6 +52,7 @@
 
     <!-- click buttons strings -->
     <string name="save_button">Save</string>
+    <string name="delete_options_menu">DEL</string>
 
 </resources>
 

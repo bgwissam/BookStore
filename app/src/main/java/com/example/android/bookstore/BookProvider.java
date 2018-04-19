@@ -104,8 +104,8 @@ public class BookProvider extends ContentProvider {
     if(price == null) {
         throw new IllegalArgumentException(R.string.book_needs_price + "");
     }
-    int quantity = contentValues.getAsInteger(BookEntry.COLUMN_PRODUCT_QUANTITY);
-    if (quantity == 0) {
+    String quantity = contentValues.getAsString(BookEntry.COLUMN_PRODUCT_QUANTITY);
+    if (quantity == null) {
         throw new IllegalArgumentException(R.string.book_needs_quantity + "");
     }
     String supplier = contentValues.getAsString(BookEntry.COLUMN_SUPPLIER_NAME);

@@ -102,7 +102,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 && TextUtils.isEmpty(supName)){
             return;
         }
-        if(TextUtils.isEmpty(mBookQuantity.getText().toString().trim())){
+        if(!TextUtils.isEmpty(mBookQuantity.getText().toString().trim())){
             quantity = Integer.parseInt(mBookQuantity.getText().toString().trim());
         }
         //start a content value instance
@@ -155,7 +155,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 finish();
                 return true;
             case R.id.action_delete:
-                //Todo delete command
                 showDeleteConfirmationDialog();
                 return true;
         }

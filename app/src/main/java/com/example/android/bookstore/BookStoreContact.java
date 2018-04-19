@@ -10,8 +10,8 @@ public final class BookStoreContact implements BaseColumns {
     //set fixed Uri content authority
     public static final String CONTENT_AUTHORITY = "com.example.android.bookstore";
     public static final Uri BASE_CONTENT_AUTHORITY = Uri.parse("content://" + CONTENT_AUTHORITY);
-    public static final String PATH_BOOKS = "bookstore";
-    public static final String PATH_BOOKS_ID = "bookstore/#";
+    public static final String PATH_BOOKS = "store_book";
+    public static final String PATH_BOOKS_ID = "store_book/#";
 
     public static abstract class BookEntry implements BaseColumns {
 

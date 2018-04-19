@@ -86,18 +86,18 @@
 
             </LinearLayout>
         </LinearLayout>
-    <LinearLayout
-        android:id="@+id/buttons_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- save button -->
-        <ImageButton
-            android:id="@+id/save_imagebutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_name"
-            android:layout_marginLeft="24dp"/>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/buttons_container"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+        <!--&lt;!&ndash; save button &ndash;&gt;-->
+        <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/save_imagebutton"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:src="@drawable/ic_action_name"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginLeft="24dp"/>&ndash;&gt;-->
         
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </LinearLayout>
