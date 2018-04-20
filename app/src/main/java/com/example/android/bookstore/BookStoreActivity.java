@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.android.bookstore.BookStoreContact.BookEntry;
@@ -25,7 +26,6 @@ public class BookStoreActivity extends AppCompatActivity implements LoaderManage
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
 
-
         //define the projections that will be used
         String [] projections = {
                 BookEntry._ID,
@@ -35,7 +35,6 @@ public class BookStoreActivity extends AppCompatActivity implements LoaderManage
                 BookEntry.COLUMN_SUPPLIER_NAME,
                 BookEntry.COLUMN_SUPPLIER_NUMBER,
         };
-
         return new CursorLoader(this, BookEntry.CONTENT_URI, projections, null, null, null);
     }
     @Override
@@ -58,7 +57,7 @@ public class BookStoreActivity extends AppCompatActivity implements LoaderManage
         setContentView(R.layout.activity_book_store);
 
         //display the data in the table
-        ListView displayView = (ListView) findViewById(R.id.book_list);
+        ListView displayView = findViewById(R.id.book_list);
         View emptyView = findViewById(R.id.empty_view);
         displayView.setEmptyView(emptyView);
         //setup an adapter to create a list of items for each row
@@ -76,6 +75,8 @@ public class BookStoreActivity extends AppCompatActivity implements LoaderManage
                 startActivity(intent);
             }
         });
+
+
         //start the loader
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
         //setup the floating button
@@ -87,37 +88,13 @@ public class BookStoreActivity extends AppCompatActivity implements LoaderManage
                     startActivity(intent);
                 }
             });
+
     }
 
 
     @Override
     public void onStart() {
         super.onStart();
-
-    }
-
-    private void insertDataOne() {
-
-        BookDbHelper mDbHelper = new BookDbHelper(this);
-
-        //create and add data to the table
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        //add demo data to the database in order to test the process
-        ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_PRODUCT_NAME, "Persuade");
-        values.put(BookEntry.COLUMN_PRODUCT_PRICE, "29");
-        values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, "5");
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, "The National Distributor");
-        values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, "001 23232323");
-        //insert another value
-        values.put(BookEntry.COLUMN_PRODUCT_NAME, "Body Language");
-        values.put(BookEntry.COLUMN_PRODUCT_PRICE, "19");
-        values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, "10");
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, "The Main Library");
-        values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, "001 34343434");
-
-        long newRowId;
-        newRowId = db.insert(BookEntry.TABLE_NAME, BookEntry._ID, values);
 
     }
 

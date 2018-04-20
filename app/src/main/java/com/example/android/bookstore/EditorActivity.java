@@ -10,14 +10,16 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.bookstore.BookStoreContact.BookEntry;
@@ -34,7 +36,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     //edit text for book price
     private EditText mBookPrice;
     //edit text for book quantity
-    private EditText mBookQuantity;
+    private TextView mBookQuantity;
     //edit text for supplier name
     private EditText mSupplierName;
     //edit text for supplier number
@@ -45,6 +47,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private Uri currentBookUri;
     //check for changes in the TextViews
     private boolean bookHasChanged = false;
+    //book quantity
+    int bookQuantity;
+    //will check if data is saved
+    public boolean dataSaved;
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener(){
         @Override
@@ -52,8 +58,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             bookHasChanged = true;
             return false;
         }
-
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -71,70 +77,93 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             //initialize the loader
             getLoaderManager().initLoader(BOOK_LOADER, null, this);
         }
+        final TextView quantity = findViewById(R.id.text_book_quantity);
+        bookQuantity = Integer.parseInt(quantity.getText().toString());
+
+        //set click listener to change quantity
+        ImageButton addQuantity = findViewById(R.id.add_button);
+        addQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              bookQuantity++;
+              quantity.setText(String.valueOf(bookQuantity));
+            }
+        });
+        ImageButton minusQuantity = findViewById(R.id.minus_button);
+        minusQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(bookQuantity>0) {
+                    bookQuantity--;
+                    quantity.setText(String.valueOf(bookQuantity));
+                }
+                else {
+                    return;
+                }
+            }
+        });
 
         //find which fields the user will be editing
         mBookName = findViewById(R.id.edit_book_name);
         mBookPrice = findViewById(R.id.edit_book_price);
-        mBookQuantity = findViewById(R.id.edit_book_quantity);
+        mBookQuantity = findViewById(R.id.text_book_quantity);
         mSupplierName = findViewById(R.id.edit_supp_name_field);
         mSupplierNumber = findViewById(R.id.edit_supp_num_field);
 
         //set listener to know when the views were edited
         mBookName.setOnTouchListener(mTouchListener);
         mBookPrice.setOnTouchListener(mTouchListener);
-        mBookQuantity.setOnTouchListener(mTouchListener);
         mSupplierNumber.setOnTouchListener(mTouchListener);
         mSupplierName.setOnTouchListener(mTouchListener);
 
     }
 
+
     private void saveBook (){
-        Log.i(LOG_TAG, "Save is active");
-        //get the value for the text view
         String name = mBookName.getText().toString().trim();
         String price = mBookPrice.getText().toString().trim();
-        int quantity = 0;
+
         String supName = mSupplierName.getText().toString().trim();
         String supNum = mSupplierNumber.getText().toString().trim();
-        Log.e(LOG_TAG, "Current book Uri " + currentBookUri);
         //check if the user is adding a new pet of editing a current one
         if(currentBookUri == null && TextUtils.isEmpty(name) && TextUtils.isEmpty(price)
                 && TextUtils.isEmpty(supName)){
             return;
         }
-        if(!TextUtils.isEmpty(mBookQuantity.getText().toString().trim())){
-            quantity = Integer.parseInt(mBookQuantity.getText().toString().trim());
+        if(name.isEmpty() || price.isEmpty() || supName.isEmpty()){
+            Toast.makeText(this, R.string.missing_entry_error, Toast.LENGTH_SHORT).show();
+            dataSaved = false;
         }
-        //start a content value instance
-        ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_PRODUCT_NAME, name);
-        values.put(BookEntry.COLUMN_PRODUCT_PRICE, price);
-        values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, quantity);
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, supName);
-        values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, supNum);
+        else {
+            //start a content value instance
+            ContentValues values = new ContentValues();
+            values.put(BookEntry.COLUMN_PRODUCT_NAME, name);
+            values.put(BookEntry.COLUMN_PRODUCT_PRICE, price);
+            values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, bookQuantity);
+            values.put(BookEntry.COLUMN_SUPPLIER_NAME, supName);
+            values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, supNum);
 
-        Log.e(LOG_TAG, "these are the value being added " + values);
+            //determine if this is a new book or an edited one
+            if (currentBookUri == null) {
+                //insert data into a new table row
+                Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
 
-        //determine if this is a new book or an edited one
-        if(currentBookUri == null){
-            //insert data into a new table row
-            Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+                if (newUri == null) {
+                    Toast.makeText(this, R.string.error_inserting_new_book, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, R.string.new_book_added, Toast.LENGTH_SHORT).show();
+                    dataSaved = true;
+                }
+            } else {
+                //update the columns of the current selected row
+                int rowsAffected = getContentResolver().update(currentBookUri, values, null, null);
 
-            if(newUri == null){
-                Toast.makeText(this, R.string.error_inserting_new_book, Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(this, R.string.new_book_added, Toast.LENGTH_SHORT).show();
-            }
-        }else {
-            //update the columns of the current selected row
-            int rowsAffected = getContentResolver().update(currentBookUri, values, null, null);
-
-            if(rowsAffected == 0){
-                Toast.makeText(this, R.string.error_updating_current_book, Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(this, R.string.current_book_updated, Toast.LENGTH_SHORT).show();
+                if (rowsAffected == 0) {
+                    Toast.makeText(this, R.string.error_updating_current_book, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, R.string.current_book_updated, Toast.LENGTH_SHORT).show();
+                    dataSaved = true;
+                }
             }
         }
     }
@@ -152,11 +181,30 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         switch (item.getItemId()){
             case R.id.action_save:
                 saveBook();
-                finish();
-                return true;
+                //check if the data was saved before closing the editor
+                if(dataSaved) {
+                    finish();}
+                    return true;
             case R.id.action_delete:
                 showDeleteConfirmationDialog();
+                finish();
                 return true;
+            case R.id.home:
+                //navigate back to main page
+                if(!bookHasChanged){
+                    NavUtils.navigateUpFromSameTask(this);
+                    return true;
+                }
+                else {
+                    DialogInterface.OnClickListener discardButtonClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            NavUtils.navigateUpFromSameTask(EditorActivity.this);
+                        }
+                    };
+                    showUnsavedChnageDialog(discardButtonClickListener);
+                    return true;
+                }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -203,7 +251,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             //extract the value
             String bookName = cursor.getString(name);
             String bookPrice = cursor.getString(price);
-            int bookQuantity = cursor.getInt(quantity);
+            String bookQuantity = cursor.getString(quantity);
             String bookSupName = cursor.getString(supName);
             String bookSupNum = cursor.getString(supNum);
             //update the edit text views with the current values obtained
