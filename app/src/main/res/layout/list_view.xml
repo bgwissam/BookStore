@@ -103,14 +103,5 @@
             android:layout_centerInParent="true"
             android:focusable="false"
             android:text="@string/sale_button" />
-
-        <Button
-            android:id="@+id/order_button_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/sale_button_view"
-            android:layout_centerHorizontal="true"
-            android:focusable="false"
-            android:text="@string/order_button" />
     </RelativeLayout>
 </LinearLayout>

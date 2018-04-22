@@ -1,5 +1,6 @@
 package com.example.android.bookstore;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -7,14 +8,17 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -127,6 +131,24 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
 
         });
+
+        //An order button to open the phone number pad Intent
+            Button orderButton = findViewById(R.id.order_button_view);
+
+            orderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view1) {
+                    //create a new intent
+                    if (ActivityCompat.checkSelfPermission(view1.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        String phoneNumber = mSupplierNumber.getText().toString().trim();
+                        Intent callSupplier = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null));
+                        startActivity(callSupplier);
+                    }
+                }
+            });
+
+
 
     }
 
@@ -372,4 +394,5 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
     }
+
 }

@@ -72,21 +72,7 @@ public class BookCursorAdapter extends CursorAdapter {
                 }
             }
         });
-        //An order button to open the phone number pad Intent
-        Button orderButton = view.findViewById(R.id.order_button_view);
-        orderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view1) {
-                //create a new intent
 
-                if (ActivityCompat.checkSelfPermission(view1.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    String phoneNumber = mSupplierNumber;
-                    Intent callSupplier = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null));
-                    context.startActivity(callSupplier);
-                }
-            }
-        });
         //populate fields
         bookName.setText(mBookName);
         bookPrice.setText(mBookPrice);
