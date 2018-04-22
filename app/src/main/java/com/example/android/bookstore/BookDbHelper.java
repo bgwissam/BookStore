@@ -16,13 +16,12 @@ public class BookDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     //create a default constructor
-    public BookDbHelper(Context context){
+    public BookDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
     @Override
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db) {
         //create and execute the Book Store sql table
         String SQL_CREATE_BOOKS_TABLE = "CREATE TABLE " + BookEntry.TABLE_NAME + "(" +
                 BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -30,14 +29,12 @@ public class BookDbHelper extends SQLiteOpenHelper {
                 BookEntry.COLUMN_PRODUCT_PRICE + " INTEGER NOT NULL, " +
                 BookEntry.COLUMN_PRODUCT_QUANTITY + " INTEGER NOT NULL, " +
                 BookEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, " +
-                BookEntry.COLUMN_SUPPLIER_NUMBER + " TEXT);";
+                BookEntry.COLUMN_SUPPLIER_NUMBER + " INTEGER);";
 
         db.execSQL(SQL_CREATE_BOOKS_TABLE);
 
     }
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 }

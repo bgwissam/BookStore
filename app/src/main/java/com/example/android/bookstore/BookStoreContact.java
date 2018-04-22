@@ -5,6 +5,10 @@ import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 public final class BookStoreContact implements BaseColumns {
 
     //set fixed Uri content authority
@@ -22,6 +26,7 @@ public final class BookStoreContact implements BaseColumns {
         public static final String COLUMN_PRODUCT_QUANTITY = "product_quantity";
         public static final String COLUMN_SUPPLIER_NAME = "supplier_name";
         public static final String COLUMN_SUPPLIER_NUMBER = "supplier_number";
+
 
         //declaration of MIME types constants
         public static final String CONTENT_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_BOOKS;

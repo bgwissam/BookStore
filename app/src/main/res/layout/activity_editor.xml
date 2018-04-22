@@ -1,6 +1,4 @@
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,110 +14,121 @@
 
         <!-- Label -->
         <TextView
-            android:layout_marginLeft="10dp"
-            android:text="@string/category_overview"
             style="@style/CategoryStyle"
-            />
+            android:layout_marginLeft="10dp"
+            android:text="@string/category_overview" />
 
         <!-- Input fields -->
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
 
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_book_name"
-                android:inputType="textCapWords"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/book_name_here"/>
+                android:hint="@string/book_name_here"
+                android:inputType="textCapWords" />
 
             <!-- Price field -->
             <EditText
                 android:id="@+id/edit_book_price"
-                android:inputType="textCapWords"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/book_price_here"/>
+                android:hint="@string/book_price_here"
+                android:inputType="number" />
             <!-- Quantity field -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageButton
                     android:id="@+id/add_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_quantity_add"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:src="@drawable/ic_quantity_add" />
 
                 <TextView
                     android:id="@+id/text_book_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="8dp"
                     android:text="0"
-                    android:textSize="18sp"
-                    android:padding="8dp"/>
+                    android:textSize="18sp" />
 
                 <ImageButton
                     android:id="@+id/minus_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_quantity_minus"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:src="@drawable/ic_quantity_minus" />
 
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/supplier_container"
-            android:orientation="horizontal">
-            <!-- supplier section -->
-            <TextView
-                android:paddingLeft="10dp"
-                style="@style/CategoryStyle"
-                android:text="@string/supplier_overview"
-                />
+    <LinearLayout
+        android:id="@+id/supplier_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!-- supplier section -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:paddingLeft="10dp"
+            android:text="@string/supplier_overview" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical"
-                android:paddingLeft="4dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
 
             <!-- Supplier Name field -->
             <EditText
                 android:id="@+id/edit_supp_name_field"
-                android:inputType="textCapWords"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/book_name_here"/>
+                android:hint="@string/book_name_here"
+                android:inputType="textCapWords" />
 
             <!-- Supplier Number field -->
             <EditText
                 android:id="@+id/edit_supp_num_field"
-                android:inputType="textCapWords"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/supplier_number_here"/>
+                android:hint="@string/supplier_number_here"
+                android:inputType="number" />
 
-            </LinearLayout>
         </LinearLayout>
-    <!--<LinearLayout-->
-        <!--android:id="@+id/buttons_container"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-        <!--&lt;!&ndash; save button &ndash;&gt;-->
-        <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/save_imagebutton"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:src="@drawable/ic_action_name"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_marginLeft="24dp"/>&ndash;&gt;-->
-        
-    <!--</LinearLayout>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- image view label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:paddingLeft="10dp"
+            android:text="@string/image_overview" />
+
+        <ImageView
+            android:id="@+id/upload_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/button_upload_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/load_picture" />
+    </LinearLayout>
 </LinearLayout>

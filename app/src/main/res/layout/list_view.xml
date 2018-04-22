@@ -6,93 +6,111 @@
 
     <LinearLayout
         android:id="@+id/table_row_book"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
         <!-- book name category-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/book_name_label"/>
-        <TextView
-            android:id="@+id/column_book_name"
-            style="@style/TextViewStyle"
-            android:text="Name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/book_name_label" />
+
+            <TextView
+                android:id="@+id/column_book_name"
+                style="@style/TextViewStyle"
+                android:text="Name" />
         </LinearLayout>
         <!-- Price category -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/book_price_label"/>
-        <TextView
-            android:id="@+id/column_book_price"
-            style="@style/TextViewStyle"
-            android:text="Price" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/book_price_label" />
+
+            <TextView
+                android:id="@+id/column_book_price"
+                style="@style/TextViewStyle"
+                android:text="Price" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/book_quantity_label"/>
-        <TextView
-            android:id="@+id/column_book_quantity"
-            style="@style/TextViewStyle"
-            android:text="Quantity" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/book_supplier_name_label"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/book_quantity_label" />
 
-        <TextView
-            android:id="@+id/column_book_supName"
-            style="@style/TextViewStyle"
-            android:text="Supplier Name" />
+            <TextView
+                android:id="@+id/column_book_quantity"
+                style="@style/TextViewStyle"
+                android:text="Quantity" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/book_supplier_name_label" />
+
+            <TextView
+                android:id="@+id/column_book_supName"
+                style="@style/TextViewStyle"
+                android:text="Supplier Name" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_supplier_number_label"/>
-        <TextView
-            android:id="@+id/column_book_supNum"
-            style="@style/TextViewStyle"
-            android:text="Supplier Number" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/book_supplier_number_label" />
+
+            <TextView
+                android:id="@+id/column_book_supNum"
+                style="@style/TextViewStyle"
+                android:text="Supplier Number" />
         </LinearLayout>
     </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <Button
             android:id="@+id/sale_button_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sale_button"
-            android:layout_centerInParent="true"/>
-        </RelativeLayout>
+            android:layout_centerInParent="true"
+            android:focusable="false"
+            android:text="@string/sale_button" />
 
-
-
-
+        <Button
+            android:id="@+id/order_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sale_button_view"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:text="@string/order_button" />
+    </RelativeLayout>
 </LinearLayout>

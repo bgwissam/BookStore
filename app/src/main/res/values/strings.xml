@@ -27,6 +27,7 @@
     <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="category_overview">Overview</string>
     <string name="supplier_overview">Supplier Info</string>
+    <string name="image_overview">Book Image</string>
 
     <!-- Toast message for detriming wether a book was saved -->
     <string name="error_inserting_new_book">Error inserting new book</string>
@@ -35,6 +36,8 @@
     <string name="current_book_updated">Current book updated successfully</string>
     <string name="error_deleting_book">Error deleting current book</string>
     <string name="current_book_deleted">Current book successfully deleted</string>
+    <string name="current_books_deleted">All books were deleted</string>
+    <string name="error_deleting_books">Error deleting all books</string>
 
     <!-- labels of editor text view -->
     <string name="book_name_here">Name</string>
@@ -55,6 +58,8 @@
     <string name="save_button">Save</string>
     <string name="delete_options_menu">DEL</string>
     <string name="sale_button">Sale</string>
+    <string name="order_button">Call</string>
+    <string name="load_picture">Upload</string>
 
     <!-- check quantity placed by the user -->
     <string name="minimum_quantity_reached">Minimum quantity reached</string>
